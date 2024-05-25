@@ -1,0 +1,257 @@
+components:
+  schemas:
+    BaseUser:
+     type: object
+     properties:
+      id:
+        type: integer
+        format: int64
+        example: 1
+      username:
+        type: string
+        maxLength: 30
+        example: "dinomanh"
+      fullname:
+         type: string
+         maxLength: 100
+         example: "Nguyễn Viết Mạnh"
+      role:
+        type: string
+        example: user
+      email:
+        type: string
+        format: email
+        maxLength: 30
+        example: "manhnguyen123@gmail.com"
+      phone:
+        type: string
+        example: "0866020143"
+      address:
+        type: string
+        example: "134 Trương Định,Hai Bà Trưng, Hà Nội"
+    User:  
+     type: object
+     properties:
+      id:
+        type: integer
+        format: int64
+        example: 1
+      username:
+        type: string
+        maxLength: 30
+        example: "dinomanh"
+      fullname:
+         type: string
+         maxLength: 100
+         example: "Nguyễn Viết Mạnh"
+      role:
+        type: string
+        example: user
+      email:
+        type: string
+        format: email
+        maxLength: 30
+        example: "manhnguyen123@gmail.com"
+      phone:
+        type: string
+        example: "0866020143"
+      address:
+        type: string
+        example: "134 Trương Định,Hai Bà Trưng, Hà Nội"
+      created_at:
+        type: string
+        format: date-time
+        example: "2024-05-06T12:00:00Z"
+      updated_at:
+        type: string
+        format: date-time
+        example: 2024-05-06T12:00:00Z"
+    ErrorResponse:  
+     type: object
+     properties:
+       success:
+        type: string
+        example: false
+       status:
+        type: integer
+        example: 404
+       message:
+        type: string
+        example: "Not found"  
+    ValidateResponse:  
+     type: object
+     properties:
+       success:
+        type: string
+        example: false
+       status:
+        type: integer
+        example: 404
+       message:
+        type: string
+        example: "Error Validate"  
+    Category:  
+     type: object
+     properties:
+      id:
+        type: integer
+        format: int64
+        example: 1
+      name:
+        type: string
+        maxLength: 30
+        example: "Adidas"
+      created_at:
+        type: string
+        format: date-time
+        example: "2024-05-06T12:00:00Z"
+      updated_at:
+        type: string
+        format: date-time
+        example: 2024-05-06T12:00:00Z"
+    DetailsProduct:  
+     type: object
+     properties:
+      id:
+        type: integer
+        format: int64
+        example: 1
+      name:
+        type: string
+        example: Ultraboost - White/Black
+      description:
+        type: string
+        example: Inspired by the original low-profile tennis shoe, the Nike Killshot 2 updates the upper with a variety of textured leathers to create a fresh look. From soft suedes to smooth leathers with the perfect sheen, it's court-side attitude with a modern touch.
+      seller:
+        type: string
+        example: Adidas
+      price:
+        type: number
+        format: float
+        example: 112.34
+      quantity:
+        type: integer
+        example: 1
+        default: 1
+      ratings:
+        type: number
+        minimum: 1
+        example: 4
+      stock:
+        type: number
+        example: 12
+        minimum: 1
+      img: 
+        type: string
+        example: https://bizweb.dktcdn.net/thumb/1024x1024/100/347/092/products/z-db3197-02.jpg
+      category:
+         $ref: "#/components/schemas/Category"
+    BaseProduct:  
+     type: object
+     properties:
+      name:
+        type: string
+        example: Ultraboost - White/Black
+      description:
+        type: string
+        example: Inspired by the original low-profile tennis shoe, the Nike Killshot 2 updates the upper with a variety of textured leathers to create a fresh look. From soft suedes to smooth leathers with the perfect sheen, it's court-side attitude with a modern touch.
+      seller:
+        type: string
+        example: Adidas
+      price:
+        type: number
+        format: float
+        example: 112.34
+      quantity:
+        type: integer
+        example: 1
+        default: 1
+      stock:
+        type: number
+        example: 12
+        minimum: 1
+      img: 
+        type: string
+        example: https://bizweb.dktcdn.net/thumb/1024x1024/100/347/092/products/z-db3197-02.jpg
+    BaseOrder:  
+     type: object
+     properties:
+      paymentMethod:
+         type: string
+         example: "banking"
+      amount:
+         type: number
+         example: "1254.24"
+    DetailsOrder:  
+     type: object
+     properties:
+      id: 
+        type: integer
+        example: 2
+      product_id:
+        type: integer
+        example: 71
+      price:
+        type: number
+        example: 420
+      quantity:
+        type: integer
+        example: 5
+      created_at:
+        type: string
+        format: date-time
+        example: "2024-05-06T12:00:00Z"
+      updated_at:
+        type: string
+        format: date-time
+        example: 2024-05-06T12:00:00Z"
+      product:  
+        type: object
+        $ref: "#/components/schemas/BaseProduct"
+    Order:
+       type: object
+       properties:
+        id: 
+          type: integer
+          example: 2
+        payment_method:
+          type: string
+          example: "banking"
+        amount:
+          type: number
+          example: "1254.24"
+        status: 
+          type: string
+          example: "created"
+        created_at:
+          type: string
+          format: date-time
+          example: "2024-05-06T12:00:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          example: 2024-05-06T12:00:00Z"
+        ordered_by:
+         type: object
+         $ref: "#/components/schemas/BaseUser"
+    Cart:  
+     type: object
+     properties:
+      id:
+        type: integer
+        format: int64
+        example: 4
+      user_id:
+         type: integer
+         example: 4
+      product: 
+        type: object
+        $ref: "#/components/schemas/BaseProduct"
+    
+
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
